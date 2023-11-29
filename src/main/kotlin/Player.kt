@@ -1,7 +1,7 @@
 import java.util.*
 
 class Player(northSouth: String) {
-    private var score: Int = 0
+    var score: Int = 0
     private val type = northSouth
 
     fun play(board: GameBoard) {
@@ -15,11 +15,18 @@ class Player(northSouth: String) {
             println("Rentrer une lettre valide")
             play(board)
         }
-        board.saw(letter)
-        board.harvest(::upScore)
+        else if (board.cellIsEmpty(letter)) {
+            println("Case vide")
+            play(board)
+        }
+        else {
+            board.saw(letter)
+            board.harvest(::upScore)
+        }
+
     }
 
-    fun upScore(points: Int) {
+    private fun upScore(points: Int) {
         score += points
         println("Score joueur $type: $score")
     }

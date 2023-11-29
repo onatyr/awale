@@ -15,7 +15,13 @@ class GameBoard {
         println("\n G   H   I   J   K   L")
     }
 
-    fun isEmpty(): Boolean {
+    fun cellIsEmpty(letter: String): Boolean {
+        if(board[letterList.indexOf(letter)].seeds == 0){
+            return true
+        }
+        return false
+    }
+    fun boardIsEmpty(): Boolean {
         for (i in 0..12) {
             if (board[i].seeds != 0) {
                 return false
@@ -27,10 +33,16 @@ class GameBoard {
     fun saw(letter: String) {
         val startIndex = letterList.indexOf(letter)
         val seeds = board[startIndex].seeds
+        var jump = 0
 
         board[startIndex].seeds = 0
         for (i in 0..<seeds) {
-            currentIndex = if (startIndex + i + 1 >= 12) startIndex + i - 11 else startIndex + i + 1
+            currentIndex = if (startIndex + i + jump + 1 >= 12) startIndex + i + jump - 11 else startIndex + i + jump + 1
+            if (startIndex == currentIndex) {
+                currentIndex += 1
+                currentIndex = if (currentIndex >= 12) currentIndex - 12 else currentIndex
+                jump = 1
+            }
             board[currentIndex].seeds += 1
         }
     }
@@ -46,8 +58,8 @@ class GameBoard {
                 score += board[currentIndex].seeds
                 board[currentIndex].seeds = 0
                 currentIndex -= 1
+                currentIndex = if (currentIndex<0) currentIndex+12 else currentIndex
             }
-
         }
         upPoint(score)
     }
