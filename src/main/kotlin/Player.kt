@@ -15,11 +15,12 @@ class Player(northSouth: String) {
             println("Rentrer une lettre valide")
             play(board)
         }
-
-
+        board.saw(letter)
+        board.harvest(::upScore)
     }
 
     fun upScore(points: Int) {
         score += points
+        println("Score joueur $type: $score")
     }
 }

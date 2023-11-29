@@ -3,6 +3,15 @@ fun main() {
     val playerNorth = Player("north")
     val playerSouth = Player("south")
     board.displayBoard()
-    playerNorth.play(board)
-    board.displayBoard()
+    fun game(){
+        println("----------------------------")
+        playerNorth.play(board)
+        board.displayBoard()
+        println("----------------------------")
+        playerSouth.play(board)
+        board.displayBoard()
+        game()
+    }
+    game()
+
 }
