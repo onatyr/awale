@@ -1,0 +1,16 @@
+fun main() {
+    val gameBoard = GameBoard()
+    val playerNorth = Player()
+    val playerSouth = Player()
+    gameBoard.displayBoard()
+    gameBoard.sawAndHarvest("B")
+    gameBoard.displayBoard()
+    gameBoard.sawAndHarvest("H")
+    gameBoard.displayBoard()
+    gameBoard.sawAndHarvest("L")
+    gameBoard.displayBoard()
+    gameBoard.sawAndHarvest("A")
+    gameBoard.displayBoard()
+    gameBoard.sawAndHarvest("J")
+    gameBoard.displayBoard()
+}
